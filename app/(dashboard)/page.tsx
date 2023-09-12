@@ -1,5 +1,5 @@
 import { Skeleton } from "@/components/ui/skeleton";
-import prisma from "@/lib/prisma";
+import { prisma } from "@/lib/prisma";
 import { wait } from "@/lib/wait";
 import { currentUser } from "@clerk/nextjs"
 import { Suspense } from "react";
@@ -10,6 +10,7 @@ import {
 } from "@/components/ui/alert"
 import SadFace from "@/components/icons/SadFace";
 import CreateCollectionBtn from "@/components/CreateCollectionBtn";
+import CollectionCard from "@/components/CollectionCard";
 
 export default async function Home() {
   return (
@@ -65,15 +66,25 @@ export default async function Home() {
         <div className="flex flex-col gap-5">
           <Alert>
             <SadFace />
-            <AlertTitle>There ar no collecions yet!</AlertTitle>
+            <AlertTitle>There are no collections yet!</AlertTitle>
             <AlertDescription>
-              Create a collection to get started.
+              Create a collection to get started
             </AlertDescription>
           </Alert>
           <CreateCollectionBtn />
         </div>
       )
     }
+
+    return (
+      <div className="flex flex-col gap-4">
+        <CreateCollectionBtn />
+        {collections.map((collection) => (
+          <CollectionCard key={collection.id} collection={collection}  />
+        )
+      )}
+      </div>
+    )
   }
 
 
