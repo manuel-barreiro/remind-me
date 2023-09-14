@@ -132,7 +132,7 @@ function CreateTaskDialog({ open, collection, setOpen }: Props) {
                             mode="single"
                             selected={field.value}
                             onSelect={field.onChange}
-                            className="bg-black"
+                            className="dark:bg-black bg-white" 
                             initialFocus
                           />
                         </PopoverContent>
